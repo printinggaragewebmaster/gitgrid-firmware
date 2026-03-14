@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — GitGrid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0D1117;
+      --surface: #161B22;
+      --surface-border: #30363D;
+      --text: #E6EDF3;
+      --text-secondary: #8B949E;
+      --primary: #39D353;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--surface-border);
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    nav a {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+    }
+    nav a:hover { text-decoration: none; }
+    .content {
+      padding: 60px 0 80px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .last-updated {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 40px;
+      margin-bottom: 12px;
+    }
+    p, li {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    ul {
+      padding-left: 24px;
+      margin-bottom: 12px;
+    }
+    li { margin-bottom: 6px; }
+    strong { color: var(--text); }
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--surface-border);
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a href="index.html">GitGrid</a>
+      <span style="color: var(--text-secondary); font-size: 14px;">/</span>
+      <span style="color: var(--text-secondary); font-size: 14px;">Privacy Policy</span>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div class="container">
+
+      <h1>Privacy Policy</h1>
+      <p class="last-updated">Last updated: March 14, 2026</p>
+
+      <p>GitGrid ("we", "our", or "us") is committed to protecting your privacy. This policy explains what data the GitGrid mobile app and GitGrid display device collect, how it is used, and your rights.</p>
+
+      <h2>1. What We Collect</h2>
+
+      <p><strong>Short version:</strong> We collect almost nothing. GitGrid is designed to work without accounts, cloud services, or tracking.</p>
+
+      <h3 style="font-size:16px; margin-top:20px; margin-bottom:8px; color: var(--text);">Data stored on your device only</h3>
+      <p>The following data is stored locally on your phone and/or the GitGrid display hardware. It is never transmitted to us or any third party:</p>
+      <ul>
+        <li><strong>WiFi credentials</strong> — Your WiFi network name and password are stored on the GitGrid display's onboard memory (NVS) so it can reconnect after power cycles. These are transmitted from the app to the display over a local Bluetooth Low Energy (BLE) connection only.</li>
+        <li><strong>GitHub username(s)</strong> — Stored on the display and in the app's local storage to remember your configuration.</li>
+        <li><strong>GitHub Personal Access Token (PAT)</strong> — If configured, your PAT is stored on the display's onboard memory. It is sent directly from the display to GitHub's API over HTTPS. It never passes through our servers.</li>
+        <li><strong>Display settings</strong> — Theme, brightness, and refresh interval preferences are stored on the display and in the app's local storage.</li>
+        <li><strong>Cached contribution data</strong> — Your GitHub contribution grid is cached on the display so it can show data even without an internet connection.</li>
+      </ul>
+
+      <h3 style="font-size:16px; margin-top:20px; margin-bottom:8px; color: var(--text);">Data sent to third parties</h3>
+      <ul>
+        <li><strong>GitHub API</strong> — The display makes HTTPS requests directly to GitHub's GraphQL API (<code>api.github.com</code>) to fetch your public contribution data. This is a direct connection between your display and GitHub — we are not involved. GitHub's own <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">privacy policy</a> applies to that connection.</li>
+        <li><strong>Firebase Crashlytics</strong> — The mobile app uses Google Firebase Crashlytics to collect anonymous crash reports. This helps us fix bugs. Crash reports may include device model, OS version, and stack traces. They do not include your GitHub username, WiFi credentials, PAT, or any personally identifiable information. You can opt out of crash reporting in your device's system settings.</li>
+        <li><strong>Firebase Remote Config</strong> — The app fetches a default configuration value from Google Firebase Remote Config on launch. This request contains no personally identifiable information.</li>
+      </ul>
+
+      <h2>2. What We Do NOT Collect</h2>
+      <ul>
+        <li>We do not collect your name, email address, or any personal information.</li>
+        <li>We do not require account creation or sign-up.</li>
+        <li>We do not collect analytics, usage data, or behavioral data.</li>
+        <li>We do not track your location.</li>
+        <li>We do not sell, share, or monetize any data.</li>
+        <li>We do not operate any servers that process your data. There is no "GitGrid cloud."</li>
+      </ul>
+
+      <h2>3. Data Flow Summary</h2>
+      <p>Here is exactly how your data moves:</p>
+      <ul>
+        <li><strong>Phone &rarr; Display:</strong> WiFi credentials, GitHub username, PAT, and display settings are sent over a local BLE connection (Bluetooth). This is a direct, short-range wireless connection between your phone and the display. No internet involved.</li>
+        <li><strong>Display &rarr; GitHub:</strong> The display fetches your contribution data directly from GitHub's API over your WiFi network using HTTPS.</li>
+        <li><strong>Phone &rarr; Firebase:</strong> Anonymous crash reports (if the app crashes) and a single configuration fetch. No personal data included.</li>
+      </ul>
+      <p>That's it. No data goes anywhere else.</p>
+
+      <h2>4. Data Retention</h2>
+      <p>All data stored on the GitGrid display can be erased at any time by performing a factory reset (via the app or by pressing the reset button on the hardware). All data stored in the app can be erased by using "Forget Device" or by uninstalling the app.</p>
+
+      <h2>5. Children's Privacy</h2>
+      <p>GitGrid does not knowingly collect any personal information from children under 13. The app does not require account creation or collect personal data from any user.</p>
+
+      <h2>6. Changes to This Policy</h2>
+      <p>If we make material changes to this privacy policy, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically.</p>
+
+      <h2>7. Contact</h2>
+      <p>If you have questions about this privacy policy, contact us at:</p>
+      <p><a href="mailto:printinggaragewebmaster+privacy@gmail.com">printinggaragewebmaster+privacy@gmail.com</a></p>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 GitGrid. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="support.html">Support</a>
+    </div>
+  </footer>
+
+</body>
+</html>

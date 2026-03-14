@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitGrid — Your GitHub Contributions, on Your Desk</title>
+  <meta name="description" content="A physical LED display that shows your GitHub contribution graph in real-time. Configure with the free companion app. No soldering required.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0D1117;
+      --surface: #161B22;
+      --surface-border: #30363D;
+      --text: #E6EDF3;
+      --text-secondary: #8B949E;
+      --primary: #39D353;
+      --green1: #0E4429;
+      --green2: #006D32;
+      --green3: #26A641;
+      --green4: #39D353;
+      --error: #F85149;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--surface-border);
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ── Logo placeholder ── */
+    .logo-placeholder {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--green1);
+      border: 2px dashed var(--surface-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 .accent { color: var(--primary); }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.9; text-decoration: none; }
+    .btn-primary { background: var(--primary); color: #000; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--surface-border);
+    }
+
+    /* ── Image placeholders ── */
+    .image-placeholder {
+      background: var(--surface);
+      border: 2px dashed var(--surface-border);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .hero-image {
+      max-width: 720px;
+      margin: 0 auto;
+      height: 400px;
+    }
+
+    /* ── Features ── */
+    .features {
+      padding: 80px 0;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .features .subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      font-size: 16px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--green1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 20px;
+    }
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── How it works ── */
+    .how-it-works {
+      padding: 80px 0;
+      border-top: 1px solid var(--surface-border);
+    }
+    .how-it-works h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 48px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .step {
+      text-align: center;
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #000;
+      font-weight: 700;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .step-image {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 16px;
+    }
+    .step h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .step p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* ── Product gallery ── */
+    .gallery {
+      padding: 80px 0;
+      border-top: 1px solid var(--surface-border);
+    }
+    .gallery h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 48px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .gallery-image {
+      width: 100%;
+      height: 280px;
+    }
+
+    /* ── App screenshots ── */
+    .screenshots {
+      padding: 80px 0;
+      border-top: 1px solid var(--surface-border);
+    }
+    .screenshots h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .screenshots .subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      font-size: 16px;
+    }
+    .screenshot-row {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      overflow-x: auto;
+    }
+    .screenshot-placeholder {
+      width: 220px;
+      min-width: 220px;
+      height: 440px;
+      border-radius: 24px;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 80px 0;
+      border-top: 1px solid var(--surface-border);
+      text-align: center;
+    }
+    .cta h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .cta p {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--surface-border);
+    }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-left {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── Store badges placeholder ── */
+    .store-badges {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .badge-placeholder {
+      width: 160px;
+      height: 48px;
+      border-radius: 8px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .screenshot-row { justify-content: flex-start; padding: 0 24px; }
+      footer .container {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <div class="nav-brand">
+        <!-- PLACEHOLDER: App logo/icon, 36x36px, rounded corners. Should be the GitGrid app icon — a stylized contribution grid in green on dark background. Replace the div below with: <img src="assets/logo.png" alt="GitGrid" width="36" height="36" style="border-radius:8px"> -->
+        <div class="logo-placeholder">logo</div>
+        GitGrid
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">Setup</a>
+        <a href="#gallery">Gallery</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="support.html">Support</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Your GitHub Contributions,<br><span class="accent">On Your Desk</span></h1>
+      <p>A real LED display that shows your GitHub contribution graph — always on, always current. Set up in under 5 minutes with the free companion app.</p>
+      <div class="hero-buttons">
+        <!-- TODO: Replace with actual Etsy listing URL -->
+        <a href="#" class="btn btn-primary">Buy on Etsy</a>
+        <a href="#screenshots" class="btn btn-secondary">See the App</a>
+      </div>
+
+      <div style="height: 48px"></div>
+
+      <!-- PLACEHOLDER: Hero product photo, 720x400px. Lifestyle shot of the GitGrid display on a desk, powered on and showing a green contribution grid. The LED matrix should be glowing with a visible contribution pattern. Desk setting — next to a monitor, keyboard, or coffee mug to show scale. Dark or neutral background to make the green LEDs pop. Replace with: <img src="assets/hero.jpg" alt="GitGrid display on a desk showing GitHub contributions" style="max-width:720px;width:100%;border-radius:16px"> -->
+      <div class="image-placeholder hero-image">
+        HERO IMAGE<br><br>
+        Lifestyle photo of the GitGrid display on a desk, powered on and showing a green contribution grid.<br>
+        The LED matrix should be glowing with a visible pattern. Desk setting — next to a monitor, keyboard, or coffee mug to show scale.<br>
+        Dark or neutral background to make the green LEDs pop.<br><br>
+        Recommended: 1440x800px (displays at 720x400)
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2>Built for Developers</h2>
+      <p class="subtitle">Everything you'd want from a physical contribution display — nothing you wouldn't.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#9889;</div>
+          <h3>5-Minute Setup</h3>
+          <p>Plug in, open the app, connect to WiFi, enter your GitHub username. That's it. No soldering, no config files, no terminal.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128268;</div>
+          <h3>Always Current</h3>
+          <p>Auto-refreshes your contribution data throughout the day. Push a commit and see it reflected on your display within minutes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#127912;</div>
+          <h3>8 Color Themes</h3>
+          <p>Classic GitHub green, blue, purple, orange, pink, cyan, white, or GitHub's own subdued palette. Switch themes anytime from the app.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128101;</div>
+          <h3>Multi-User Rotation</h3>
+          <p>Add up to 5 GitHub usernames and the display cycles between them. Perfect for teams or showing off your org.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128274;</div>
+          <h3>Private &amp; Secure</h3>
+          <p>No accounts, no cloud service, no subscriptions. Your data goes straight from GitHub to your display over your own WiFi. Nothing passes through our servers.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128260;</div>
+          <h3>OTA Updates</h3>
+          <p>Firmware updates delivered automatically over WiFi. New features and fixes without plugging anything in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <h2>Setup in 3 Steps</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <!-- PLACEHOLDER: Setup step 1 image, 300x200px. Photo or screenshot showing: the GitGrid display plugged in via USB-C, LED matrix showing "Ready to pair" in white text on black background. Clean, well-lit product shot. Replace with: <img src="assets/step-1.jpg" alt="Plug in the display" class="image-placeholder step-image" style="border:none;padding:0"> -->
+          <div class="image-placeholder step-image">
+            STEP 1 IMAGE<br><br>
+            Photo of the GitGrid display plugged in via USB-C, showing "Ready to pair" in white text on the LED matrix.<br><br>
+            300x200px minimum
+          </div>
+          <h3>Plug In</h3>
+          <p>Connect the display to any USB-C power source. It boots up and shows "Ready to pair" in seconds.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <!-- PLACEHOLDER: Setup step 2 image, 300x200px. Screenshot of the GitGrid mobile app showing the WiFi network selection screen — dark theme, list of WiFi networks with signal strength indicators, matching the app's #0D1117 background and #39D353 green accent. Replace with: <img src="assets/step-2.png" alt="Connect WiFi via the app" class="image-placeholder step-image" style="border:none;padding:0"> -->
+          <div class="image-placeholder step-image">
+            STEP 2 IMAGE<br><br>
+            App screenshot: WiFi network selection screen. Dark theme (#0D1117 background), list of WiFi networks with signal strength bars, green (#39D353) accents.<br><br>
+            300x200px minimum (phone screenshot cropped)
+          </div>
+          <h3>Connect WiFi</h3>
+          <p>Open the free companion app, find your display, and select your WiFi network. 2.4 GHz networks supported.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <!-- PLACEHOLDER: Setup step 3 image, 300x200px. Photo of the GitGrid display showing a real contribution grid — glowing green pixels forming the familiar GitHub contribution pattern, with a username visible at the top. Slightly angled shot to show the LED glow. Replace with: <img src="assets/step-3.jpg" alt="See your contributions" class="image-placeholder step-image" style="border:none;padding:0"> -->
+          <div class="image-placeholder step-image">
+            STEP 3 IMAGE<br><br>
+            Photo of the display showing a real contribution grid — glowing green pixels, familiar GitHub pattern, username visible at top. Slightly angled to show LED glow.<br><br>
+            300x200px minimum
+          </div>
+          <h3>Enter Username</h3>
+          <p>Type your GitHub username and watch your contribution graph appear on the display in seconds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Gallery -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <!-- PLACEHOLDER: Gallery image 1, ~460x280px. Front-on product shot of the GitGrid display, powered on, showing a contribution grid. Clean white or dark background. This is the "product catalog" shot — centered, well-lit, no distractions. Replace with: <img src="assets/gallery-1.jpg" alt="GitGrid display front view" style="width:100%;border-radius:16px"> -->
+        <div class="image-placeholder gallery-image">
+          GALLERY IMAGE 1<br><br>
+          Front-on product shot, powered on, contribution grid visible.<br>
+          Clean background, centered, well-lit. "Catalog" style.<br><br>
+          920x560px (displays at 460x280)
+        </div>
+        <!-- PLACEHOLDER: Gallery image 2, ~460x280px. Angled/perspective shot showing the enclosure build quality — the 3D-printed or machined enclosure, USB-C port visible, maybe showing the side profile. Emphasize that this is a finished product, not a bare circuit board. Replace with: <img src="assets/gallery-2.jpg" alt="GitGrid enclosure detail" style="width:100%;border-radius:16px"> -->
+        <div class="image-placeholder gallery-image">
+          GALLERY IMAGE 2<br><br>
+          Angled shot showing enclosure build quality — finished product, USB-C port visible, side profile.<br>
+          Emphasize this is a polished product, not a bare board.<br><br>
+          920x560px (displays at 460x280)
+        </div>
+        <!-- PLACEHOLDER: Gallery image 3, ~460x280px. Lifestyle shot — the display on a shelf, mounted on a wall, or on a desk next to other dev items (mechanical keyboard, monitor, plant). Show it in a real living/working environment. Replace with: <img src="assets/gallery-3.jpg" alt="GitGrid in a workspace" style="width:100%;border-radius:16px"> -->
+        <div class="image-placeholder gallery-image">
+          GALLERY IMAGE 3<br><br>
+          Lifestyle shot — display on shelf, wall-mounted, or on desk next to dev items (keyboard, monitor, plant).<br>
+          Real living/working environment.<br><br>
+          920x560px (displays at 460x280)
+        </div>
+        <!-- PLACEHOLDER: Gallery image 4, ~460x280px. Close-up macro shot of the LED matrix pixels — showing the individual RGB LEDs glowing green at different brightness levels. Artistic/detail shot that highlights the pixel aesthetic. Shallow depth of field. Replace with: <img src="assets/gallery-4.jpg" alt="GitGrid LED detail" style="width:100%;border-radius:16px"> -->
+        <div class="image-placeholder gallery-image">
+          GALLERY IMAGE 4<br><br>
+          Close-up macro of the LED matrix pixels — individual RGB LEDs glowing green at different levels.<br>
+          Artistic detail shot. Shallow depth of field.<br><br>
+          920x560px (displays at 460x280)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Screenshots -->
+  <section class="screenshots" id="screenshots">
+    <div class="container">
+      <h2>The Companion App</h2>
+      <p class="subtitle">Free for iOS and Android. Configure everything from your phone.</p>
+      <div class="screenshot-row">
+        <!-- PLACEHOLDER: App screenshot 1, 220x440px (phone aspect ratio). The scan/pairing screen — showing a discovered "GitGrid-XXXX" device with a connect button. Dark theme. Replace with: <img src="assets/app-scan.png" alt="Device scanning" width="220" style="border-radius:24px"> -->
+        <div class="image-placeholder screenshot-placeholder">
+          APP SCREENSHOT 1<br><br>
+          Scan/pairing screen — discovered "GitGrid-XXXX" device, connect button.<br>
+          Dark theme.<br><br>
+          440x880px (displays at 220x440)
+        </div>
+        <!-- PLACEHOLDER: App screenshot 2, 220x440px. The WiFi selection screen — list of networks with signal strength indicators. Dark theme with green accents. Replace with: <img src="assets/app-wifi.png" alt="WiFi setup" width="220" style="border-radius:24px"> -->
+        <div class="image-placeholder screenshot-placeholder">
+          APP SCREENSHOT 2<br><br>
+          WiFi selection screen — network list with signal bars.<br>
+          Dark theme, green accents.<br><br>
+          440x880px (displays at 220x440)
+        </div>
+        <!-- PLACEHOLDER: App screenshot 3, 220x440px. The GitHub username entry screen — text input with a validated username showing green checkmark and avatar preview. Dark theme. Replace with: <img src="assets/app-username.png" alt="Username entry" width="220" style="border-radius:24px"> -->
+        <div class="image-placeholder screenshot-placeholder">
+          APP SCREENSHOT 3<br><br>
+          GitHub username screen — input with validated username, green checkmark, avatar preview.<br>
+          Dark theme.<br><br>
+          440x880px (displays at 220x440)
+        </div>
+        <!-- PLACEHOLDER: App screenshot 4, 220x440px. The home screen — showing connected device status, GitHub user section, display settings (theme, brightness), device management. Dark theme with section cards. Replace with: <img src="assets/app-home.png" alt="Home screen" width="220" style="border-radius:24px"> -->
+        <div class="image-placeholder screenshot-placeholder">
+          APP SCREENSHOT 4<br><br>
+          Home screen — device status, GitHub user section, display settings, device management.<br>
+          Dark theme with section cards.<br><br>
+          440x880px (displays at 220x440)
+        </div>
+        <!-- PLACEHOLDER: App screenshot 5, 220x440px. The theme selection screen or a view showing the display with a non-green theme (e.g., purple or blue) to demonstrate customization. Dark theme. Replace with: <img src="assets/app-theme.png" alt="Theme selection" width="220" style="border-radius:24px"> -->
+        <div class="image-placeholder screenshot-placeholder">
+          APP SCREENSHOT 5<br><br>
+          Theme selection or display showing a non-green theme (purple, blue) to show customization.<br>
+          Dark theme.<br><br>
+          440x880px (displays at 220x440)
+        </div>
+      </div>
+
+      <div style="height: 40px"></div>
+
+      <div class="store-badges">
+        <!-- PLACEHOLDER: App Store badge, 160x48px. Standard Apple "Download on the App Store" black badge. Replace with: <a href="TODO_APP_STORE_URL"><img src="assets/badge-appstore.svg" alt="Download on the App Store" width="160" height="48"></a> -->
+        <div class="image-placeholder badge-placeholder">
+          APP STORE BADGE<br>160x48
+        </div>
+        <!-- PLACEHOLDER: Google Play badge, 160x48px. Standard Google "Get it on Google Play" black badge. Replace with: <a href="TODO_PLAY_STORE_URL"><img src="assets/badge-googleplay.png" alt="Get it on Google Play" width="160" height="48"></a> -->
+        <div class="image-placeholder badge-placeholder">
+          GOOGLE PLAY BADGE<br>160x48
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Light Up Your Desk?</h2>
+      <p>GitGrid is available now on Etsy. Free shipping included.</p>
+      <div class="hero-buttons">
+        <!-- TODO: Replace with actual Etsy listing URL -->
+        <a href="#" class="btn btn-primary">Buy on Etsy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-left">&copy; 2026 GitGrid. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="support.html">Support</a>
+        <!-- TODO: Replace with actual Etsy listing URL -->
+        <a href="#">Etsy Store</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
