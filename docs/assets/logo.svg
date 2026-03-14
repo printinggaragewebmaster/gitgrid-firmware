@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Overlapping GG — 1-cell offset, two solid colors, front G on top
+       G1 (front, upper-left): #39D353
+       G2 (back, lower-right):  #006D32
+
+       Col:  0  1  2  3  4  5  6
+       R0:   .  G1 G1 G1 G1 .  .
+       R1:   G1 .  G2 G2 G2 G1 .
+       R2:   G1 G2 .  .  .  .  G2
+       R3:   G1 G2 .  G1 G1 G1 .
+       R4:   G1 G2 .  .  G2 G1 G2
+       R5:   .  G1 G1 G1 G1 .  G2
+       R6:   .  .  G2 G2 G2 G2 .
+  -->
+
+  <!-- Row 0 -->
+  <rect x="21" y="9"  width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="33" y="9"  width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="45" y="9"  width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="57" y="9"  width="10" height="10" rx="1.5" fill="#39D353"/>
+
+  <!-- Row 1 -->
+  <rect x="9"  y="21" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="33" y="21" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="45" y="21" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="57" y="21" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="69" y="21" width="10" height="10" rx="1.5" fill="#39D353"/>
+
+  <!-- Row 2 -->
+  <rect x="9"  y="33" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="21" y="33" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="81" y="33" width="10" height="10" rx="1.5" fill="#006D32"/>
+
+  <!-- Row 3 -->
+  <rect x="9"  y="45" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="21" y="45" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="45" y="45" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="57" y="45" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="69" y="45" width="10" height="10" rx="1.5" fill="#39D353"/>
+
+  <!-- Row 4 -->
+  <rect x="9"  y="57" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="21" y="57" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="57" y="57" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="69" y="57" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="81" y="57" width="10" height="10" rx="1.5" fill="#006D32"/>
+
+  <!-- Row 5 -->
+  <rect x="21" y="69" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="33" y="69" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="45" y="69" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="57" y="69" width="10" height="10" rx="1.5" fill="#39D353"/>
+  <rect x="81" y="69" width="10" height="10" rx="1.5" fill="#006D32"/>
+
+  <!-- Row 6 -->
+  <rect x="33" y="81" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="45" y="81" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="57" y="81" width="10" height="10" rx="1.5" fill="#006D32"/>
+  <rect x="69" y="81" width="10" height="10" rx="1.5" fill="#006D32"/>
+</svg>
