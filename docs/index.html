@@ -230,11 +230,6 @@
       justify-content: center;
       margin: 0 auto 16px;
     }
-    .step-image {
-      width: 100%;
-      height: 200px;
-      margin-bottom: 16px;
-    }
     .step h3 {
       font-size: 16px;
       font-weight: 600;
@@ -243,27 +238,6 @@
     .step p {
       font-size: 14px;
       color: var(--text-secondary);
-    }
-
-    /* ── Product gallery ── */
-    .gallery {
-      padding: 80px 0;
-      border-top: 1px solid var(--surface-border);
-    }
-    .gallery h2 {
-      text-align: center;
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 48px;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-    .gallery-image {
-      width: 100%;
-      height: 280px;
     }
 
     /* ── App screenshots ── */
@@ -356,7 +330,6 @@
       .hero p { font-size: 16px; }
       .feature-grid { grid-template-columns: 1fr; }
       .steps { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr; }
       .screenshot-row { justify-content: flex-start; padding: 0 24px; }
       footer .container {
         flex-direction: column;
@@ -378,7 +351,6 @@
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#how-it-works">Setup</a>
-        <a href="#gallery">Gallery</a>
         <a href="privacy.html">Privacy</a>
         <a href="support.html">Support</a>
       </div>
@@ -449,73 +421,18 @@
       <div class="steps">
         <div class="step">
           <div class="step-number">1</div>
-          <!-- PLACEHOLDER: Setup step 1 image, 300x200px. Photo or screenshot showing: the GitGrid display plugged in via USB-C, LED matrix showing "Ready to pair" in white text on black background. Clean, well-lit product shot. Replace with: <img src="assets/step-1.jpg" alt="Plug in the display" class="image-placeholder step-image" style="border:none;padding:0"> -->
-          <div class="image-placeholder step-image">
-            STEP 1 IMAGE<br><br>
-            Photo of the GitGrid display plugged in via USB-C, showing "Ready to pair" in white text on the LED matrix.<br><br>
-            300x200px minimum
-          </div>
           <h3>Plug In</h3>
           <p>Connect the display to any USB-C power source. It boots up and shows "Ready to pair" in seconds.</p>
         </div>
         <div class="step">
           <div class="step-number">2</div>
-          <!-- PLACEHOLDER: Setup step 2 image, 300x200px. Screenshot of the GitGrid mobile app showing the WiFi network selection screen — dark theme, list of WiFi networks with signal strength indicators, matching the app's #0D1117 background and #39D353 green accent. Replace with: <img src="assets/step-2.png" alt="Connect WiFi via the app" class="image-placeholder step-image" style="border:none;padding:0"> -->
-          <div class="image-placeholder step-image">
-            STEP 2 IMAGE<br><br>
-            App screenshot: WiFi network selection screen. Dark theme (#0D1117 background), list of WiFi networks with signal strength bars, green (#39D353) accents.<br><br>
-            300x200px minimum (phone screenshot cropped)
-          </div>
           <h3>Connect WiFi</h3>
           <p>Open the free companion app, find your display, and select your WiFi network. 2.4 GHz networks supported.</p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
-          <!-- PLACEHOLDER: Setup step 3 image, 300x200px. Photo of the GitGrid display showing a real contribution grid — glowing green pixels forming the familiar GitHub contribution pattern, with a username visible at the top. Slightly angled shot to show the LED glow. Replace with: <img src="assets/step-3.jpg" alt="See your contributions" class="image-placeholder step-image" style="border:none;padding:0"> -->
-          <div class="image-placeholder step-image">
-            STEP 3 IMAGE<br><br>
-            Photo of the display showing a real contribution grid — glowing green pixels, familiar GitHub pattern, username visible at top. Slightly angled to show LED glow.<br><br>
-            300x200px minimum
-          </div>
           <h3>Enter Username</h3>
           <p>Type your GitHub username and watch your contribution graph appear on the display in seconds.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Product Gallery -->
-  <section class="gallery" id="gallery">
-    <div class="container">
-      <h2>Gallery</h2>
-      <div class="gallery-grid">
-        <!-- PLACEHOLDER: Gallery image 1, ~460x280px. Front-on product shot of the GitGrid display, powered on, showing a contribution grid. Clean white or dark background. This is the "product catalog" shot — centered, well-lit, no distractions. Replace with: <img src="assets/gallery-1.jpg" alt="GitGrid display front view" style="width:100%;border-radius:16px"> -->
-        <div class="image-placeholder gallery-image">
-          GALLERY IMAGE 1<br><br>
-          Front-on product shot, powered on, contribution grid visible.<br>
-          Clean background, centered, well-lit. "Catalog" style.<br><br>
-          920x560px (displays at 460x280)
-        </div>
-        <!-- PLACEHOLDER: Gallery image 2, ~460x280px. Angled/perspective shot showing the enclosure build quality — the 3D-printed or machined enclosure, USB-C port visible, maybe showing the side profile. Emphasize that this is a finished product, not a bare circuit board. Replace with: <img src="assets/gallery-2.jpg" alt="GitGrid enclosure detail" style="width:100%;border-radius:16px"> -->
-        <div class="image-placeholder gallery-image">
-          GALLERY IMAGE 2<br><br>
-          Angled shot showing enclosure build quality — finished product, USB-C port visible, side profile.<br>
-          Emphasize this is a polished product, not a bare board.<br><br>
-          920x560px (displays at 460x280)
-        </div>
-        <!-- PLACEHOLDER: Gallery image 3, ~460x280px. Lifestyle shot — the display on a shelf, mounted on a wall, or on a desk next to other dev items (mechanical keyboard, monitor, plant). Show it in a real living/working environment. Replace with: <img src="assets/gallery-3.jpg" alt="GitGrid in a workspace" style="width:100%;border-radius:16px"> -->
-        <div class="image-placeholder gallery-image">
-          GALLERY IMAGE 3<br><br>
-          Lifestyle shot — display on shelf, wall-mounted, or on desk next to dev items (keyboard, monitor, plant).<br>
-          Real living/working environment.<br><br>
-          920x560px (displays at 460x280)
-        </div>
-        <!-- PLACEHOLDER: Gallery image 4, ~460x280px. Close-up macro shot of the LED matrix pixels — showing the individual RGB LEDs glowing green at different brightness levels. Artistic/detail shot that highlights the pixel aesthetic. Shallow depth of field. Replace with: <img src="assets/gallery-4.jpg" alt="GitGrid LED detail" style="width:100%;border-radius:16px"> -->
-        <div class="image-placeholder gallery-image">
-          GALLERY IMAGE 4<br><br>
-          Close-up macro of the LED matrix pixels — individual RGB LEDs glowing green at different levels.<br>
-          Artistic detail shot. Shallow depth of field.<br><br>
-          920x560px (displays at 460x280)
         </div>
       </div>
     </div>
@@ -527,41 +444,11 @@
       <h2>The Companion App</h2>
       <p class="subtitle">Free for iOS and Android. Configure everything from your phone.</p>
       <div class="screenshot-row">
-        <!-- PLACEHOLDER: App screenshot 1, 220x440px (phone aspect ratio). The scan/pairing screen — showing a discovered "GitGrid-XXXX" device with a connect button. Dark theme. Replace with: <img src="assets/app-scan.png" alt="Device scanning" width="220" style="border-radius:24px"> -->
-        <div class="image-placeholder screenshot-placeholder">
-          APP SCREENSHOT 1<br><br>
-          Scan/pairing screen — discovered "GitGrid-XXXX" device, connect button.<br>
-          Dark theme.<br><br>
-          440x880px (displays at 220x440)
-        </div>
-        <!-- PLACEHOLDER: App screenshot 2, 220x440px. The WiFi selection screen — list of networks with signal strength indicators. Dark theme with green accents. Replace with: <img src="assets/app-wifi.png" alt="WiFi setup" width="220" style="border-radius:24px"> -->
-        <div class="image-placeholder screenshot-placeholder">
-          APP SCREENSHOT 2<br><br>
-          WiFi selection screen — network list with signal bars.<br>
-          Dark theme, green accents.<br><br>
-          440x880px (displays at 220x440)
-        </div>
-        <!-- PLACEHOLDER: App screenshot 3, 220x440px. The GitHub username entry screen — text input with a validated username showing green checkmark and avatar preview. Dark theme. Replace with: <img src="assets/app-username.png" alt="Username entry" width="220" style="border-radius:24px"> -->
-        <div class="image-placeholder screenshot-placeholder">
-          APP SCREENSHOT 3<br><br>
-          GitHub username screen — input with validated username, green checkmark, avatar preview.<br>
-          Dark theme.<br><br>
-          440x880px (displays at 220x440)
-        </div>
-        <!-- PLACEHOLDER: App screenshot 4, 220x440px. The home screen — showing connected device status, GitHub user section, display settings (theme, brightness), device management. Dark theme with section cards. Replace with: <img src="assets/app-home.png" alt="Home screen" width="220" style="border-radius:24px"> -->
-        <div class="image-placeholder screenshot-placeholder">
-          APP SCREENSHOT 4<br><br>
-          Home screen — device status, GitHub user section, display settings, device management.<br>
-          Dark theme with section cards.<br><br>
-          440x880px (displays at 220x440)
-        </div>
-        <!-- PLACEHOLDER: App screenshot 5, 220x440px. The theme selection screen or a view showing the display with a non-green theme (e.g., purple or blue) to demonstrate customization. Dark theme. Replace with: <img src="assets/app-theme.png" alt="Theme selection" width="220" style="border-radius:24px"> -->
-        <div class="image-placeholder screenshot-placeholder">
-          APP SCREENSHOT 5<br><br>
-          Theme selection or display showing a non-green theme (purple, blue) to show customization.<br>
-          Dark theme.<br><br>
-          440x880px (displays at 220x440)
-        </div>
+        <img src="assets/app-scan.png" alt="Device scanning" width="220" style="border-radius:24px">
+        <img src="assets/app-wifi.png" alt="WiFi setup" width="220" style="border-radius:24px">
+        <img src="assets/app-username.png" alt="Username entry" width="220" style="border-radius:24px">
+        <img src="assets/app-home.png" alt="Home screen" width="220" style="border-radius:24px">
+        <img src="assets/app-help.png" alt="Help and FAQ" width="220" style="border-radius:24px">
       </div>
 
       <div style="height: 40px"></div>
